@@ -1,22 +1,53 @@
 Model {
-  Name			  "ocv_calc"
+  Name			  "Batter_Model_01"
   Version		  8.1
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    1
     Inport {
       BusObject		      ""
-      Name		      "SOC"
+      Name		      "SOC0"
     }
-    NumRootOutports	    1
+    NumRootOutports	    3
     Outport {
       BusObject		      ""
       BusOutputAsStruct	      "off"
-      Name		      "OCV"
+      Name		      "Vt-"
+    }
+    Outport {
+      BusObject		      ""
+      BusOutputAsStruct	      "off"
+      Name		      "Vt+-"
+    }
+    Outport {
+      BusObject		      ""
+      BusOutputAsStruct	      "off"
+      Name		      "SOCn"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.1"
-    NumModelReferences	    0
+    ComputedModelVersion    "1.4"
+    NumModelReferences	    7
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_01/Model|soc_calc"
+    }
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_01/Model1|Vrs_calc"
+    }
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_01/Model2|voltages_of_parallel_RCs"
+    }
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_01/Model3|RC_values"
+    }
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_01/Model4|ocv_calc"
+    }
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_01/Model5|current_measure"
+    }
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_01/Model6|controlled_voltage_source"
+    }
     NumTestPointedSignals   0
   }
   SavedCharacterEncoding  "windows-1252"
@@ -39,7 +70,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [96.0, 77.0, 808.0, 527.0]
+      Location		      [51.0, 95.0, 1294.0, 711.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -63,21 +94,21 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[569.0, 367.0]
-	ZoomFactor		[1.0]
-	Offset			[0.0, 0.0]
+	Extents			[1055.0, 551.0]
+	ZoomFactor		[0.8]
+	Offset			[-18.987502694129944, -93.649995476007433]
       }
     }
   }
-  Created		  "Thu May 11 20:40:58 2017"
+  Created		  "Sun May 14 21:59:39 2017"
   Creator		  "hlopez5"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "hlopez5"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu May 11 20:45:44 2017"
-  RTWModifiedTimeStamp	  416436291
-  ModelVersionFormat	  "1.%<AutoIncrement:1>"
+  LastModifiedDate	  "Sun May 14 23:36:47 2017"
+  RTWModifiedTimeStamp	  416705796
+  ModelVersionFormat	  "1.%<AutoIncrement:4>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -114,12 +145,12 @@ Model {
     $PropName		    "DataLoggingOverride"
     $ObjectID		    6
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "ocv_calc"
+    model_		    "Batter_Model_01"
     overrideMode_	    [0U]
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "ocv_calc"
+      Cell		      "Batter_Model_01"
       PropName		      "logAsSpecifiedByModels_"
     }
     Array {
@@ -755,6 +786,19 @@ Model {
   }
   BlockParameterDefaults {
     Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
       BlockType		      Inport
       Port		      "1"
       OutputFunctionCall      off
@@ -771,6 +815,13 @@ Model {
       LatchByDelayingOutsideSignal off
       LatchInputForFeedbackSignals off
       Interpolate	      on
+    }
+    Block {
+      BlockType		      ModelReference
+      SimulationMode	      "Accelerator"
+      Variant		      off
+      GeneratePreprocessorConditionals off
+      CopyOfModelProtected    off
     }
     Block {
       BlockType		      Outport
@@ -790,13 +841,40 @@ Model {
       InitialOutput	      "[]"
     }
     Block {
-      BlockType		      Polyval
-      Coefs		      "[1,2]"
+      BlockType		      Saturate
+      UpperLimitSource	      "Dialog"
+      UpperLimit	      "0.5"
+      LowerLimitSource	      "Dialog"
+      LowerLimit	      "-0.5"
+      LinearizeAsGain	      on
+      ZeroCross		      on
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as input"
+      LockScale		      off
+      RndMeth		      "Floor"
+    }
+    Block {
+      BlockType		      Sum
+      IconShape		      "rectangular"
+      Inputs		      "++"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
     }
   }
   System {
-    Name		    "ocv_calc"
-    Location		    [96, 77, 904, 604]
+    Name		    "Batter_Model_01"
+    Location		    [51, 95, 1345, 806]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -808,44 +886,540 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "100"
+    ZoomFactor		    "80"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "5"
+    SIDHighWatermark	    "19"
     Block {
       BlockType		      Inport
-      Name		      "SOC"
-      SID		      "1"
-      Position		      [160, 73, 190, 87]
-      ZOrder		      1
+      Name		      "SOC0"
+      SID		      "14"
+      Position		      [200, 98, 230, 112]
+      ZOrder		      14
       IconDisplay	      "Port number"
     }
     Block {
-      BlockType		      Polyval
-      Name		      "Polynomial"
+      BlockType		      Sum
+      Name		      "Add"
+      SID		      "7"
+      Ports		      [2, 1]
+      Position		      [625, 382, 655, 413]
+      ZOrder		      7
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model"
+      SID		      "1"
+      Ports		      [2, 1]
+      Position		      [255, 94, 395, 141]
+      ZOrder		      1
+      ModelNameDialog	      "soc_calc.mdl"
+      SimulationMode	      "Normal"
+      ModelReferenceVersion   "1.1"
+      List {
+	ListType		InputPortNames
+	port0			"SOC0"
+	port1			"I"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"SOC1"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+	port1			"off"
+      }
+      CopyOfModelName	      "soc_calc.mdl"
+      DefaultDataLogging      on
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+	port1			"off"
+      }
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model1"
+      SID		      "3"
+      Ports		      [2, 1]
+      Position		      [435, 249, 575, 296]
+      ZOrder		      3
+      ModelNameDialog	      "Vrs_calc.mdl"
+      SimulationMode	      "Normal"
+      ModelReferenceVersion   "1.1"
+      List {
+	ListType		InputPortNames
+	port0			"SOC"
+	port1			"I"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"Vs"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+	port1			"off"
+      }
+      CopyOfModelName	      "Vrs_calc.mdl"
+      DefaultDataLogging      on
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+	port1			"off"
+      }
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model2"
       SID		      "4"
-      Position		      [235, 65, 295, 95]
+      Ports		      [5, 2]
+      Position		      [415, 318, 575, 482]
       ZOrder		      4
-      Coefs		      "[ +2.081618890e-019, -1.441693666e-014 ]"
+      ModelNameDialog	      "voltages_of_parallel_RCs.mdl"
+      SimulationMode	      "Normal"
+      ModelReferenceVersion   "1.3"
+      List {
+	ListType		InputPortNames
+	port0			"I"
+	port1			"R1"
+	port2			"R2"
+	port3			"C1"
+	port4			"C2"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"V1"
+	port1			"V2"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+	port1			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+	port1			"off"
+	port2			"off"
+	port3			"off"
+	port4			"off"
+      }
+      CopyOfModelName	      "voltages_of_parallel_RCs.mdl"
+      DefaultDataLogging      on
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+	port1			"off"
+	port2			"off"
+	port3			"off"
+	port4			"off"
+      }
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model3"
+      SID		      "5"
+      Ports		      [2, 4]
+      Position		      [265, 351, 370, 479]
+      ZOrder		      5
+      ModelNameDialog	      "RC_values.mdl"
+      SimulationMode	      "Normal"
+      ModelReferenceVersion   "1.3"
+      List {
+	ListType		InputPortNames
+	port0			"SOC "
+	port1			"I"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"R1"
+	port1			"R2"
+	port2			"C1"
+	port3			"C2"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+	port1			"off"
+	port2			"off"
+	port3			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+	port1			"off"
+      }
+      CopyOfModelName	      "RC_values.mdl"
+      DefaultDataLogging      on
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+	port1			"off"
+      }
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model4"
+      SID		      "6"
+      Ports		      [1, 1]
+      Position		      [435, 177, 575, 223]
+      ZOrder		      6
+      ModelNameDialog	      "ocv_calc.mdl"
+      SimulationMode	      "Normal"
+      ModelReferenceVersion   "1.1"
+      List {
+	ListType		InputPortNames
+	port0			"SOC"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"OCV"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+      }
+      CopyOfModelName	      "ocv_calc.mdl"
+      DefaultDataLogging      on
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+      }
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model5"
+      SID		      "17"
+      Ports		      [2, 2]
+      Position		      [1055, 64, 1195, 111]
+      ZOrder		      17
+      ModelNameDialog	      "current_measure.mdl"
+      SimulationMode	      "Normal"
+      ModelReferenceVersion   "1.3"
+      List {
+	ListType		InputPortNames
+	port0			"+"
+	port1			"R(t)"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"i"
+	port1			"-"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+	port1			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+	port1			"off"
+      }
+      CopyOfModelName	      "current_measure.mdl"
+      DefaultDataLogging      on
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+	port1			"off"
+      }
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model6"
+      SID		      "18"
+      Ports		      [1, 2]
+      Position		      [890, 178, 1030, 227]
+      ZOrder		      18
+      ModelNameDialog	      "controlled_voltage_source.mdl"
+      SimulationMode	      "Normal"
+      ModelReferenceVersion   "1.3"
+      List {
+	ListType		InputPortNames
+	port0			"S"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"V+"
+	port1			"V-"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+	port1			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+      }
+      CopyOfModelName	      "controlled_voltage_source.mdl"
+      DefaultDataLogging      on
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+      }
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Resistance"
+      SID		      "19"
+      Position		      [980, 85, 1010, 115]
+      ZOrder		      19
+    }
+    Block {
+      BlockType		      Saturate
+      Name		      "Saturation"
+      SID		      "10"
+      Ports		      [1, 1]
+      Position		      [825, 225, 855, 255]
+      ZOrder		      10
+      InputPortMap	      "u0"
+    }
+    Block {
+      BlockType		      Saturate
+      Name		      "Saturation1"
+      SID		      "16"
+      Ports		      [1, 1]
+      Position		      [435, 105, 465, 135]
+      ZOrder		      16
+      InputPortMap	      "u0"
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Subtract"
+      SID		      "8"
+      Ports		      [2, 1]
+      Position		      [685, 212, 715, 243]
+      ZOrder		      8
+      Inputs		      "+-"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Subtract1"
+      SID		      "9"
+      Ports		      [2, 1]
+      Position		      [755, 222, 785, 253]
+      ZOrder		      9
+      Inputs		      "+-"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
     }
     Block {
       BlockType		      Outport
-      Name		      "OCV"
-      SID		      "2"
-      Position		      [365, 73, 395, 87]
-      ZOrder		      2
+      Name		      "Vt-"
+      SID		      "12"
+      Position		      [1210, 208, 1240, 222]
+      ZOrder		      12
+      IconDisplay	      "Port number"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Vt+-"
+      SID		      "13"
+      Position		      [1210, 93, 1240, 107]
+      ZOrder		      13
+      Port		      "2"
+      IconDisplay	      "Port number"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "SOCn"
+      SID		      "15"
+      Position		      [515, 113, 545, 127]
+      ZOrder		      15
+      Port		      "3"
       IconDisplay	      "Port number"
     }
     Line {
-      SrcBlock		      "SOC"
+      SrcBlock		      "Model3"
       SrcPort		      1
-      DstBlock		      "Polynomial"
+      DstBlock		      "Model2"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Model3"
+      SrcPort		      2
+      DstBlock		      "Model2"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Model3"
+      SrcPort		      3
+      DstBlock		      "Model2"
+      DstPort		      4
+    }
+    Line {
+      SrcBlock		      "Model3"
+      SrcPort		      4
+      DstBlock		      "Model2"
+      DstPort		      5
+    }
+    Line {
+      SrcBlock		      "Model2"
+      SrcPort		      1
+      Points		      [22, 0; 0, 30]
+      DstBlock		      "Add"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Polynomial"
+      SrcBlock		      "Model2"
+      SrcPort		      2
+      Points		      [9, 0; 0, -35]
+      DstBlock		      "Add"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Model4"
       SrcPort		      1
-      DstBlock		      "OCV"
+      Points		      [40, 0; 0, 20]
+      DstBlock		      "Subtract"
       DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Add"
+      SrcPort		      1
+      Points		      [5, 0; 0, -165]
+      DstBlock		      "Subtract"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Subtract"
+      SrcPort		      1
+      DstBlock		      "Subtract1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Model1"
+      SrcPort		      1
+      Points		      [154, 0; 0, -30]
+      DstBlock		      "Subtract1"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Subtract1"
+      SrcPort		      1
+      DstBlock		      "Saturation"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "SOC0"
+      SrcPort		      1
+      DstBlock		      "Model"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Model"
+      SrcPort		      1
+      Points		      [15, 0]
+      Branch {
+	Points			[0, 80]
+	Branch {
+	  Points		  [0, 60]
+	  Branch {
+	    Points		    [-160, 0; 0, 125]
+	    DstBlock		    "Model3"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Model1"
+	    DstPort		    1
+	  }
+	}
+	Branch {
+	  DstBlock		  "Model4"
+	  DstPort		  1
+	}
+      }
+      Branch {
+	DstBlock		"Saturation1"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Saturation1"
+      SrcPort		      1
+      DstBlock		      "SOCn"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Model5"
+      SrcPort		      1
+      Points		      [9, 0; 0, -57; -1024, 0; 0, 112]
+      Branch {
+	Points			[0, 155]
+	Branch {
+	  Points		  [0, 55]
+	  Branch {
+	    Points		    [0, 110]
+	    DstBlock		    "Model3"
+	    DstPort		    2
+	  }
+	  Branch {
+	    DstBlock		    "Model2"
+	    DstPort		    1
+	  }
+	}
+	Branch {
+	  DstBlock		  "Model1"
+	  DstPort		  2
+	}
+      }
+      Branch {
+	DstBlock		"Model"
+	DstPort			2
+      }
+    }
+    Line {
+      SrcBlock		      "Model5"
+      SrcPort		      2
+      DstBlock		      "Vt+-"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Saturation"
+      SrcPort		      1
+      Points		      [12, 0; 0, -35]
+      DstBlock		      "Model6"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Model6"
+      SrcPort		      1
+      Points		      [5, 0]
+      DstBlock		      "Model5"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Model6"
+      SrcPort		      2
+      DstBlock		      "Vt-"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Resistance"
+      SrcPort		      1
+      DstBlock		      "Model5"
+      DstPort		      2
     }
   }
 }
