@@ -79,7 +79,7 @@ Model {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[8]
+	Filter			[9]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -96,7 +96,7 @@ Model {
 	LoadSaveID		"0"
 	Extents			[1055.0, 551.0]
 	ZoomFactor		[0.8]
-	Offset			[-18.987502694129944, -93.649995476007433]
+	Offset			[-18.987502694129944, -93.649995476007462]
       }
     }
   }
@@ -106,7 +106,7 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "hlopez5"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun May 14 23:36:47 2017"
+  LastModifiedDate	  "Mon May 15 22:35:25 2017"
   RTWModifiedTimeStamp	  416705796
   ModelVersionFormat	  "1.%<AutoIncrement:4>"
   ConfigurationManager	  "None"
@@ -146,7 +146,7 @@ Model {
     $ObjectID		    6
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "Batter_Model_01"
-    overrideMode_	    [0U]
+    overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
       Dimension		      1

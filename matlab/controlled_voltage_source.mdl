@@ -20,7 +20,7 @@ Model {
       Name		      "V-"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.3"
+    ComputedModelVersion    "1.4"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -53,7 +53,7 @@ Model {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[8]
+	Filter			[9]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -80,9 +80,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "hlopez5"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun May 14 23:34:00 2017"
-  RTWModifiedTimeStamp	  416705626
-  ModelVersionFormat	  "1.%<AutoIncrement:3>"
+  LastModifiedDate	  "Mon May 15 22:37:45 2017"
+  RTWModifiedTimeStamp	  416788659
+  ModelVersionFormat	  "1.%<AutoIncrement:4>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -824,7 +824,7 @@ Model {
       BlockType		      Outport
       Name		      "V+"
       SID		      "2"
-      Position		      [430, 153, 460, 167]
+      Position		      [430, 58, 460, 72]
       ZOrder		      2
       IconDisplay	      "Port number"
     }
@@ -836,6 +836,21 @@ Model {
       ZOrder		      4
       Port		      "2"
       IconDisplay	      "Port number"
+    }
+    Line {
+      SrcBlock		      "S"
+      SrcPort		      1
+      Points		      [113, 0]
+      Branch {
+	Points			[0, 120]
+	DstBlock		"V-"
+	DstPort			1
+      }
+      Branch {
+	Points			[17, 0; 0, -25]
+	DstBlock		"V+"
+	DstPort			1
+      }
     }
   }
 }
