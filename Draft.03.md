@@ -51,13 +51,24 @@ A logical equivalent to the SOC calculation formula in Simulink is provided belo
 
 ![Fig.1](/images/soc_calc.jpeg)
 
+
+The Rate capacity lookup table can be created using a continious discharge test result. The below shows the continious discharge test of a LiFePO4 batery.
+
+
+
 ### Calculate OCV
 
 Open circuit voltage is the voltage of battery during equilibrium state. It is one of the important parameter to be realized. The value of OCV is dependent on SOC. The OCV- SOC relationship can be characterized with polynomial equation. Therefore, for this subsystem, a mathematical relationship between OCV and SOC is established as a block diagram shown :
 
-
 ![Fig.1](/images/soc_ocv_calc.jpeg)
 
+
+
+
+
+
+
+----
 
 
 
