@@ -1,3 +1,81 @@
+Battery Perfromance Analysis
+============================
+EEL6905 Directed Independent Study 
+Hector Lopez Summer 2017
+
+Outline
+----------------
+* [X] 1. ~~Summarize thesis [4]~~
+* [ ] 2. Simulink Model for Battery 
+    - Copy FPL battery model 
+    - build a simulink project with powersim
+* [X] 3. Life of battery what are different parameters and disturbances ?
+    - Average Temperature
+    - Depth of discharge
+    - Exposure to long periods of discharge
+    - Charging Current
+    - Load Current
+    - Areas under charging/discharging phases
+    - Self-discharging (internal chemical reactions) battery characteristic
+    - cycle number
+    - Internal heat generation
+    - Internal Resistance
+    - State of Charge
+    - Ambient temperature effects
+    - Terminal voltage and capacity effected by load and temp.
+    - Voltage
+    - Discharging current
+    - Depth of Charge
+    - Capacity
+    - High Specific Energy 
+4. Battery Modeling in Labview/Multisim?
+    - Batteries to model :
+        - Lithium Ion Polymer : Lightweight, and  high energy density. Needs specialized charging circuit because it is succeptible to temperature.**(Need to find research on this model)
+        - Lithium Iron Phosphate : Seems to be the most popular for EV because it is more durable at different temperatures. High energy density but larger and heavier batteries. Still requires complex charging circuitry.**(Need to find research on this model)
+        - Nickel Metal Hydride : Used in Hybrids, very stable, has been around longer. Chemistry is more well known. Much heavier than lithium but not as fragile.
+        - Lead Acid : Used as storge device, most common widely used.
+        - Nickel Iron: Much heavier very durable, long lasting, simple charging. requires venting and frequent charging. **(Need to find research on this model)
+    - Matlab Models from NREL 
+        - A123 2.3Ah 26650 graphite/iron-phosphate cell
+            - have a matlab model of this cell
+            - Nickel Cobalt Al -PHEV-type graphite/Ni-Co-Al cell
+
+
+
+
+Fuzzy Controller
+? can a fuzzy controller be implemented on the battery charging/discharging models?
+
+
+
+Battery Characterization
+
+The first step in the development of an accurate battery model is to build and parameterize an equivalent circuit that reflects the battery’s nonlinear behavior and dependencies on temperature, SOC, SOH, and current. These dependencies are unique to each battery’s chemistry and need to be determined using measurements performed on battery cells of exactly the same type as those for which the controller is being designed. 
+
+SOC Estimation
+
+One common application of battery models is to develop algorithms for SOC estimation. Open-circuit voltage (OCV) measurement and current integration (coulomb counting) may give reasonable estimates for SOC. However, to estimate the SOC in modern battery chemistries that have flat OCV-SOC discharge signatures, you need to use a different approach, such as Kalman filtering.
+
+Degradation
+
+Batteries degrade over time due to their calendar life and charge-discharge cycles, showing a gradual loss in reserve capacity and an increase in internal resistance. The battery management system (BMS) needs to adapt to these changes for effective control of the battery. Battery models can help you develop a BMS that accounts for degradation.
+
+High Fidelity Electrical Model with Thermal Dependence for Characterization and Simulation of High Power Lithium Battery Cells - IEEE 2012
+Lithium Battery Model with Thermal Effects for System-Level Analysis (24:05) - Webinar
+Battery Model Parameter Estimation Using a Layered Technique - SAE 2013
+Automating Battery Model Parameter Estimation using Experimental Data (25:28) - Webinar
+Simplified Extended Kalman Filter Observer for Battery SOC Estimation - SAE 2013
+Model-Based Parameter Identification of Healthy and Aged Li-ion Batteries for Electric Vehicle Applications - SAE 2015
+Battery Pack Modeling, Simulation, and Deployment on a Multicore Real Time Target  - SAE 2014
+Real-Time Simulation of Battery Packs Using Multicore Computers (22:57) - Webinar
+Battery Simulation and Controls - MathWorks Consulting
+
+
+
+
+
+
+
 rainfall counting algorithm
 
 The rainflow cycle counting algorithm is widely used while
@@ -62,55 +140,3 @@ Reference Papers
 3. Generic Battery Model Covering Self-discharge and Internal Resistance Variation
 3. Simulink Based Performance Analysis of Lead Acid Batteries with the Variation of Load Current and Temperature
 4. Applicatoins of Pulse Width Modulation to LEDs,Fuel CELLS and Battery Technology
-
-TODO:
-1. Summarize thesis [4]
-2. Simulink Model for Battery 
-    - Copy FPL battery model 
-    - build a simulink project with powersim
-3. Life of battery what are different parameters and disturbances ?
-    - Average Temperature
-    - Depth of discharge
-    - Exposure to long periods of discharge
-    - Charging Current
-    - Load Current
-    - Areas under charging/discharging phases
-    - Self-discharging (internal chemical reactions) battery characteristic
-    - cycle number
-    - Internal heat generation
-    - Internal Resistance
-    - State of Charge
-    - Ambient temperature effects
-    - Terminal voltage and capacity effected by load and temp.
-    - Voltage
-    - Discharging current
-    - Depth of Charge
-    - Capacity
-    - High Specific Energy 
-
-Fuzzy Controller
-? can a fuzzy controller be implemented on the battery charging/discharging models?
-
-
-
-Battery Characterization
-
-The first step in the development of an accurate battery model is to build and parameterize an equivalent circuit that reflects the battery’s nonlinear behavior and dependencies on temperature, SOC, SOH, and current. These dependencies are unique to each battery’s chemistry and need to be determined using measurements performed on battery cells of exactly the same type as those for which the controller is being designed. 
-
-SOC Estimation
-
-One common application of battery models is to develop algorithms for SOC estimation. Open-circuit voltage (OCV) measurement and current integration (coulomb counting) may give reasonable estimates for SOC. However, to estimate the SOC in modern battery chemistries that have flat OCV-SOC discharge signatures, you need to use a different approach, such as Kalman filtering.
-
-Degradation
-
-Batteries degrade over time due to their calendar life and charge-discharge cycles, showing a gradual loss in reserve capacity and an increase in internal resistance. The battery management system (BMS) needs to adapt to these changes for effective control of the battery. Battery models can help you develop a BMS that accounts for degradation.
-
-High Fidelity Electrical Model with Thermal Dependence for Characterization and Simulation of High Power Lithium Battery Cells - IEEE 2012
-Lithium Battery Model with Thermal Effects for System-Level Analysis (24:05) - Webinar
-Battery Model Parameter Estimation Using a Layered Technique - SAE 2013
-Automating Battery Model Parameter Estimation using Experimental Data (25:28) - Webinar
-Simplified Extended Kalman Filter Observer for Battery SOC Estimation - SAE 2013
-Model-Based Parameter Identification of Healthy and Aged Li-ion Batteries for Electric Vehicle Applications - SAE 2015
-Battery Pack Modeling, Simulation, and Deployment on a Multicore Real Time Target  - SAE 2014
-Real-Time Simulation of Battery Packs Using Multicore Computers (22:57) - Webinar
-Battery Simulation and Controls - MathWorks Consulting
