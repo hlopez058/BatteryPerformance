@@ -1,31 +1,58 @@
 Model {
-  Name			  "Vrs_calc"
+  Name			  "Batter_Model_02"
   Version		  8.9
   SavedCharacterEncoding  "ISO-8859-1"
   GraphicalInterface {
-    NumRootInports	    2
+    NumRootInports	    1
     Inport {
-      Name		      "SOC"
+      Name		      "SOC0"
       BusObject		      ""
       OutputFunctionCall      "off"
       UnitExpr		      "inherit"
     }
-    Inport {
-      Name		      "I"
-      BusObject		      ""
-      OutputFunctionCall      "off"
-      UnitExpr		      "inherit"
-    }
-    NumRootOutports	    1
+    NumRootOutports	    3
     Outport {
-      Name		      "Vs"
+      Name		      "Vt+-"
+      BusObject		      ""
+      BusOutputAsStruct	      "off"
+      UnitExpr		      "inherit"
+    }
+    Outport {
+      Name		      "Vt-"
+      BusObject		      ""
+      BusOutputAsStruct	      "off"
+      UnitExpr		      "inherit"
+    }
+    Outport {
+      Name		      "SOCn"
       BusObject		      ""
       BusOutputAsStruct	      "off"
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.4"
-    NumModelReferences	    0
+    ComputedModelVersion    "1.5"
+    NumModelReferences	    7
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_02/Model|soc_calc"
+    }
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_02/Model1|Vrs_calc"
+    }
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_02/Model2|voltages_of_parallel_RCs"
+    }
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_02/Model3|RC_values"
+    }
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_02/Model4|ocv_calc"
+    }
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_02/Model5|current_measure"
+    }
+    ModelReference {
+      ModelRefBlockPath	      "Batter_Model_02/Model6|controlled_voltage_source"
+    }
     NumTestPointedSignals   0
     NumProvidedFunctions    0
     NumRequiredFunctions    0
@@ -51,6 +78,7 @@ Model {
   MinMaxOverflowArchiveMode "Overwrite"
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
+  UserBdParams		  "PhysicalModelingChecksum;PhysicalModelingParameterChecksum;PhysicalModelingProducts"
   LastSavedArchitecture	  "maci64"
   Object {
     $PropName		    "BdWindowsInfo"
@@ -61,7 +89,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [96.0, 77.0, 808.0, 527.0]
+      Location		      [479.0, 478.0, 1294.0, 711.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -85,9 +113,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[580.0, 351.0]
-	ZoomFactor		[1.0]
-	Offset			[0.0, 0.0]
+	Extents			[1066.0, 535.0]
+	ZoomFactor		[0.8]
+	Offset			[63.262497305867896, -153.89999547600826]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -103,27 +131,30 @@ Model {
 	Width			[640]
 	Height			[480]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAABmvwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAACUvwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAARgAAAZoAAABzAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAARgAAAlIAAABzAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALgD///8AAAJqAAABmgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALgD///8AAARQAAACUgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACE/////wAAAAAAAAAA/////wEAAAD2/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAF6/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAL5/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAOh/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
   HideAutomaticNames	  on
-  Created		  "Sun May 14 21:53:52 2017"
+  PhysicalModelingChecksum "854472726"
+  PhysicalModelingParameterChecksum "3436498603"
+  PhysicalModelingProducts "Power_System_Blocks"
+  Created		  "Sun May 14 17:59:39 2017"
   Creator		  "hlopez5"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "judithlopez"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri May 26 22:28:49 2017"
-  RTWModifiedTimeStamp	  417738517
-  ModelVersionFormat	  "1.%<AutoIncrement:4>"
+  LastModifiedDate	  "Tue May 23 21:23:20 2017"
+  RTWModifiedTimeStamp	  417393434
+  ModelVersionFormat	  "1.%<AutoIncrement:5>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -175,12 +206,12 @@ Model {
     $PropName		    "DataLoggingOverride"
     $ObjectID		    7
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "Vrs_calc"
+    model_		    "Batter_Model_02"
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "Vrs_calc"
+      Cell		      "Batter_Model_02"
       PropName		      "logAsSpecifiedByModels_"
     }
     Array {
@@ -224,7 +255,7 @@ Model {
       Description	      ""
       Array {
 	Type			"Handle"
-	Dimension		9
+	Dimension		10
 	Simulink.SolverCC {
 	  $ObjectID		  9
 	  Version		  "1.17.0"
@@ -390,8 +421,8 @@ Model {
 	  SaveWithDisabledLinksMsg "warning"
 	  SaveWithParameterizedLinksMsg	"warning"
 	  CheckSSInitialOutputMsg on
-	  UnderspecifiedInitializationDetection	"Simplified"
-	  MergeDetectMultiDrivingBlocksExec "error"
+	  UnderspecifiedInitializationDetection	"Classic"
+	  MergeDetectMultiDrivingBlocksExec "none"
 	  CheckExecutionContextPreStartOutputMsg off
 	  CheckExecutionContextRuntimeOutputMsg	off
 	  SignalResolutionControl "UseLocalSettings"
@@ -885,6 +916,29 @@ Model {
 	  CovStopTime		  0
 	  CovMcdcMode		  "Masking"
 	}
+	SSC.SimscapeCC {
+	  $ObjectID		  20
+	  Version		  "1.0"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    "Name"
+	    PropName		    "DisabledProps"
+	  }
+	  Description		  ""
+	  Name			  "Simscape"
+	  EditingMode		  "Full"
+	  ExplicitSolverDiagnosticOptions "warning"
+	  GlobalZcOffDiagnosticOptions "warning"
+	  SimscapeLogType	  "none"
+	  SimscapeLogSimulationStatistics off
+	  SimscapeLogOpenViewer	  off
+	  SimscapeLogName	  "simlog"
+	  SimscapeLogDecimation	  1
+	  SimscapeLogLimitData	  on
+	  SimscapeLogDataHistory  5000
+	  SelectedTab		  ""
+	}
 	PropName		"Components"
       }
       Name		      "Configuration"
@@ -900,7 +954,7 @@ Model {
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    20
+    $ObjectID		    21
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -962,6 +1016,19 @@ Model {
   }
   BlockParameterDefaults {
     Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
       BlockType		      Inport
       Port		      "1"
       OutputFunctionCall      off
@@ -981,236 +1048,15 @@ Model {
       Interpolate	      on
     }
     Block {
-      BlockType		      Lookup_n-D
-      NumberOfTableDimensions "2"
-      DataSpecification	      "Table and breakpoints"
-      BreakpointsSpecification "Explicit values"
-      BreakpointsForDimension1 "[10,22,31]"
-      BreakpointsForDimension2 "[10,22,31]"
-      BreakpointsForDimension3 "[1:3]"
-      BreakpointsForDimension4 "[1:3]"
-      BreakpointsForDimension5 "[1:3]"
-      BreakpointsForDimension6 "[1:3]"
-      BreakpointsForDimension7 "[1:3]"
-      BreakpointsForDimension8 "[1:3]"
-      BreakpointsForDimension9 "[1:3]"
-      BreakpointsForDimension10	"[1:3]"
-      BreakpointsForDimension11	"[1:3]"
-      BreakpointsForDimension12	"[1:3]"
-      BreakpointsForDimension13	"[1:3]"
-      BreakpointsForDimension14	"[1:3]"
-      BreakpointsForDimension15	"[1:3]"
-      BreakpointsForDimension16	"[1:3]"
-      BreakpointsForDimension17	"[1:3]"
-      BreakpointsForDimension18	"[1:3]"
-      BreakpointsForDimension19	"[1:3]"
-      BreakpointsForDimension20	"[1:3]"
-      BreakpointsForDimension21	"[1:3]"
-      BreakpointsForDimension22	"[1:3]"
-      BreakpointsForDimension23	"[1:3]"
-      BreakpointsForDimension24	"[1:3]"
-      BreakpointsForDimension25	"[1:3]"
-      BreakpointsForDimension26	"[1:3]"
-      BreakpointsForDimension27	"[1:3]"
-      BreakpointsForDimension28	"[1:3]"
-      BreakpointsForDimension29	"[1:3]"
-      BreakpointsForDimension30	"[1:3]"
-      BreakpointsForDimension1FirstPoint "1"
-      BreakpointsForDimension2FirstPoint "1"
-      BreakpointsForDimension3FirstPoint "1"
-      BreakpointsForDimension4FirstPoint "1"
-      BreakpointsForDimension5FirstPoint "1"
-      BreakpointsForDimension6FirstPoint "1"
-      BreakpointsForDimension7FirstPoint "1"
-      BreakpointsForDimension8FirstPoint "1"
-      BreakpointsForDimension9FirstPoint "1"
-      BreakpointsForDimension10FirstPoint "1"
-      BreakpointsForDimension11FirstPoint "1"
-      BreakpointsForDimension12FirstPoint "1"
-      BreakpointsForDimension13FirstPoint "1"
-      BreakpointsForDimension14FirstPoint "1"
-      BreakpointsForDimension15FirstPoint "1"
-      BreakpointsForDimension16FirstPoint "1"
-      BreakpointsForDimension17FirstPoint "1"
-      BreakpointsForDimension18FirstPoint "1"
-      BreakpointsForDimension19FirstPoint "1"
-      BreakpointsForDimension20FirstPoint "1"
-      BreakpointsForDimension21FirstPoint "1"
-      BreakpointsForDimension22FirstPoint "1"
-      BreakpointsForDimension23FirstPoint "1"
-      BreakpointsForDimension24FirstPoint "1"
-      BreakpointsForDimension25FirstPoint "1"
-      BreakpointsForDimension26FirstPoint "1"
-      BreakpointsForDimension27FirstPoint "1"
-      BreakpointsForDimension28FirstPoint "1"
-      BreakpointsForDimension29FirstPoint "1"
-      BreakpointsForDimension30FirstPoint "1"
-      BreakpointsForDimension1Spacing "1"
-      BreakpointsForDimension2Spacing "1"
-      BreakpointsForDimension3Spacing "1"
-      BreakpointsForDimension4Spacing "1"
-      BreakpointsForDimension5Spacing "1"
-      BreakpointsForDimension6Spacing "1"
-      BreakpointsForDimension7Spacing "1"
-      BreakpointsForDimension8Spacing "1"
-      BreakpointsForDimension9Spacing "1"
-      BreakpointsForDimension10Spacing "1"
-      BreakpointsForDimension11Spacing "1"
-      BreakpointsForDimension12Spacing "1"
-      BreakpointsForDimension13Spacing "1"
-      BreakpointsForDimension14Spacing "1"
-      BreakpointsForDimension15Spacing "1"
-      BreakpointsForDimension16Spacing "1"
-      BreakpointsForDimension17Spacing "1"
-      BreakpointsForDimension18Spacing "1"
-      BreakpointsForDimension19Spacing "1"
-      BreakpointsForDimension20Spacing "1"
-      BreakpointsForDimension21Spacing "1"
-      BreakpointsForDimension22Spacing "1"
-      BreakpointsForDimension23Spacing "1"
-      BreakpointsForDimension24Spacing "1"
-      BreakpointsForDimension25Spacing "1"
-      BreakpointsForDimension26Spacing "1"
-      BreakpointsForDimension27Spacing "1"
-      BreakpointsForDimension28Spacing "1"
-      BreakpointsForDimension29Spacing "1"
-      BreakpointsForDimension30Spacing "1"
-      BreakpointsForDimension1Min "[]"
-      BreakpointsForDimension2Min "[]"
-      BreakpointsForDimension3Min "[]"
-      BreakpointsForDimension4Min "[]"
-      BreakpointsForDimension5Min "[]"
-      BreakpointsForDimension6Min "[]"
-      BreakpointsForDimension7Min "[]"
-      BreakpointsForDimension8Min "[]"
-      BreakpointsForDimension9Min "[]"
-      BreakpointsForDimension10Min "[]"
-      BreakpointsForDimension11Min "[]"
-      BreakpointsForDimension12Min "[]"
-      BreakpointsForDimension13Min "[]"
-      BreakpointsForDimension14Min "[]"
-      BreakpointsForDimension15Min "[]"
-      BreakpointsForDimension16Min "[]"
-      BreakpointsForDimension17Min "[]"
-      BreakpointsForDimension18Min "[]"
-      BreakpointsForDimension19Min "[]"
-      BreakpointsForDimension20Min "[]"
-      BreakpointsForDimension21Min "[]"
-      BreakpointsForDimension22Min "[]"
-      BreakpointsForDimension23Min "[]"
-      BreakpointsForDimension24Min "[]"
-      BreakpointsForDimension25Min "[]"
-      BreakpointsForDimension26Min "[]"
-      BreakpointsForDimension27Min "[]"
-      BreakpointsForDimension28Min "[]"
-      BreakpointsForDimension29Min "[]"
-      BreakpointsForDimension30Min "[]"
-      BreakpointsForDimension1Max "[]"
-      BreakpointsForDimension2Max "[]"
-      BreakpointsForDimension3Max "[]"
-      BreakpointsForDimension4Max "[]"
-      BreakpointsForDimension5Max "[]"
-      BreakpointsForDimension6Max "[]"
-      BreakpointsForDimension7Max "[]"
-      BreakpointsForDimension8Max "[]"
-      BreakpointsForDimension9Max "[]"
-      BreakpointsForDimension10Max "[]"
-      BreakpointsForDimension11Max "[]"
-      BreakpointsForDimension12Max "[]"
-      BreakpointsForDimension13Max "[]"
-      BreakpointsForDimension14Max "[]"
-      BreakpointsForDimension15Max "[]"
-      BreakpointsForDimension16Max "[]"
-      BreakpointsForDimension17Max "[]"
-      BreakpointsForDimension18Max "[]"
-      BreakpointsForDimension19Max "[]"
-      BreakpointsForDimension20Max "[]"
-      BreakpointsForDimension21Max "[]"
-      BreakpointsForDimension22Max "[]"
-      BreakpointsForDimension23Max "[]"
-      BreakpointsForDimension24Max "[]"
-      BreakpointsForDimension25Max "[]"
-      BreakpointsForDimension26Max "[]"
-      BreakpointsForDimension27Max "[]"
-      BreakpointsForDimension28Max "[]"
-      BreakpointsForDimension29Max "[]"
-      BreakpointsForDimension30Max "[]"
-      BreakpointsForDimension1DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension2DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension3DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension4DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension5DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension6DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension7DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension8DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension9DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension10DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension11DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension12DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension13DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension14DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension15DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension16DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension17DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension18DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension19DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension20DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension21DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension22DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension23DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension24DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension25DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension26DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension27DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension28DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension29DataTypeStr "Inherit: Same as corresponding input"
-      BreakpointsForDimension30DataTypeStr "Inherit: Same as corresponding input"
-      IndexSearchMethod	      "Binary search"
-      BeginIndexSearchUsingPreviousIndexResult off
-      UseOneInputPortForAllInputData off
-      Table		      "[4 5 6;16 19 20;10 18 23]"
-      TableMin		      "[]"
-      TableMax		      "[]"
-      TableDataTypeStr	      "Inherit: Same as output"
-      IntermediateResultsDataTypeStr "Inherit: Same as output"
-      InterpMethod	      "Linear"
-      ExtrapMethod	      "Linear"
-      DiagnosticForOutOfRangeInput "None"
-      RemoveProtectionInput   off
-      UseLastTableValue	      off
-      SampleTime	      "-1"
-      InternalRulePriority    "Precision"
-      InputSameDT	      on
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as first input"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-      FractionDataTypeStr     "Inherit: Inherit via internal rule"
-      SupportTunableTableSize off
-      MaximumIndicesForEachDimension "[]"
-      LUTDesignTableMode      "Redesign Table"
-      LUTDesignDataSource     "Block Dialog"
-      LUTDesignFunctionName   "sqrt(x)"
-      LUTDesignUseExistingBP  on
-      LUTDesignRelError	      "0.01"
-      LUTDesignAbsError	      "1e-6"
-    }
-    Block {
-      BlockType		      Math
-      Operator		      "exp"
-      OutputSignalType	      "auto"
-      SampleTime	      "-1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as first input"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	on
-      IntermediateResultsDataTypeStr "Inherit: Inherit via internal rule"
-      AlgorithmType	      "Newton-Raphson"
-      Iterations	      "3"
+      BlockType		      ModelReference
+      SimulationMode	      "Accelerator"
+      ShowModelInitializePort off
+      ShowModelResetPorts     off
+      ShowModelTerminatePort  off
+      CodeInterface	      "Model reference"
+      GeneratePreprocessorConditionals off
+      ContentPreviewEnabled   off
+      CopyOfModelProtected    off
     }
     Block {
       BlockType		      Outport
@@ -1233,39 +1079,43 @@ Model {
       MustResolveToSignalObject	off
     }
     Block {
-      BlockType		      Product
-      Inputs		      "2"
-      Multiplication	      "Element-wise(.*)"
+      BlockType		      PMIOPort
+    }
+    Block {
+      BlockType		      Saturate
+      UpperLimitSource	      "Dialog"
+      UpperLimit	      "0.5"
+      LowerLimitSource	      "Dialog"
+      LowerLimit	      "-0.5"
+      LinearizeAsGain	      on
+      ZeroCross		      on
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as input"
+      LockScale		      off
+      RndMeth		      "Floor"
+    }
+    Block {
+      BlockType		      Sum
+      IconShape		      "rectangular"
+      Inputs		      "++"
       CollapseMode	      "All dimensions"
       CollapseDim	      "1"
       InputSameDT	      on
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as first input"
-      LockScale		      off
-      RndMeth		      "Zero"
-      SaturateOnIntegerOverflow	on
-      SampleTime	      "-1"
-    }
-    Block {
-      BlockType		      Sqrt
-      Operator		      "sqrt"
-      OutputSignalType	      "auto"
-      SampleTime	      "-1"
+      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
       OutMin		      "[]"
       OutMax		      "[]"
       OutDataTypeStr	      "Inherit: Same as first input"
       LockScale		      off
       RndMeth		      "Floor"
       SaturateOnIntegerOverflow	on
-      IntermediateResultsDataTypeStr "Inherit: Inherit via internal rule"
-      AlgorithmType	      "Exact"
-      Iterations	      "3"
+      SampleTime	      "-1"
     }
   }
   System {
-    Name		    "Vrs_calc"
-    Location		    [96, 77, 904, 604]
+    Name		    "Batter_Model_02"
+    Location		    [479, 478, 1773, 1189]
     Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  on
@@ -1278,126 +1128,729 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "100"
+    ZoomFactor		    "80"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "7"
+    SIDHighWatermark	    "24"
     Block {
       BlockType		      Inport
-      Name		      "SOC"
-      SID		      "5"
-      Position		      [80, 63, 110, 77]
-      ZOrder		      5
+      Name		      "SOC0"
+      SID		      "14"
+      Position		      [200, 98, 230, 112]
+      ZOrder		      14
       IconDisplay	      "Port number"
     }
     Block {
-      BlockType		      Inport
-      Name		      "I"
+      BlockType		      Sum
+      Name		      "Add"
       SID		      "7"
-      Position		      [80, 133, 110, 147]
+      Ports		      [2, 1]
+      Position		      [625, 382, 655, 413]
       ZOrder		      7
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Controlled Voltage Source1"
+      SID		      "22"
+      Ports		      [1, 0, 0, 0, 0, 1, 1]
+      Position		      [1055, 330, 1090, 375]
+      ZOrder		      22
+      BlockRotation	      270
+      LibraryVersion	      "1.2760"
+      SourceBlock	      "powerlib/Electrical\nSources/Controlled Voltage Source"
+      SourceType	      "Controlled Voltage Source"
+      SourceProductName	      "Simscape Power Systems"
+      SourceProductBaseCode   "PS"
+      ContentPreviewEnabled   off
+      Initialize	      on
+      Source_Type	      "AC"
+      Amplitude		      "0"
+      Phase		      "0"
+      Frequency		      "0"
+      Measurements	      "None"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Current Measurement"
+      SID		      "21"
+      Ports		      [0, 1, 0, 0, 0, 1, 1]
+      Position		      [1140, 148, 1165, 172]
+      ZOrder		      21
+      LibraryVersion	      "1.2760"
+      UserDataPersistent      on
+      SourceBlock	      "powerlib/Measurements/Current Measurement"
+      SourceType	      "Current Measurement"
+      SourceProductName	      "Simscape Power Systems"
+      SourceProductBaseCode   "PS"
+      ContentPreviewEnabled   off
+      PhasorSimulation	      off
+      OutputType	      "Complex"
+      PSBequivalent	      "0"
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model"
+      SID		      "1"
+      Ports		      [2, 1]
+      Position		      [255, 94, 395, 141]
+      ZOrder		      1
+      ModelNameDialog	      "soc_calc.mdl"
+      SimulationMode	      "Normal"
+      Variant		      off
+      ModelReferenceVersion   "1.2"
+      List {
+	ListType		InputPortNames
+	port0			"SOC0"
+	port1			"I"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"SOC1"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+	port1			"off"
+      }
+      List {
+	ListType		OutputPortUnitExprs
+	port0			"inherit"
+      }
+      List {
+	ListType		InputPortUnitExprs
+	port0			"inherit"
+	port1			"inherit"
+      }
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+	port1			"off"
+      }
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model1"
+      SID		      "3"
+      Ports		      [2, 1]
+      Position		      [435, 249, 575, 296]
+      ZOrder		      3
+      ModelNameDialog	      "Vrs_calc.mdl"
+      SimulationMode	      "Normal"
+      Variant		      off
+      ModelReferenceVersion   "1.1"
+      List {
+	ListType		InputPortNames
+	port0			"SOC"
+	port1			"I"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"Vs"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+	port1			"off"
+      }
+      List {
+	ListType		OutputPortUnitExprs
+	port0			"inherit"
+      }
+      List {
+	ListType		InputPortUnitExprs
+	port0			"inherit"
+	port1			"inherit"
+      }
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+	port1			"off"
+      }
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model2"
+      SID		      "4"
+      Ports		      [5, 2]
+      Position		      [415, 318, 575, 482]
+      ZOrder		      4
+      ModelNameDialog	      "voltages_of_parallel_RCs.mdl"
+      SimulationMode	      "Normal"
+      Variant		      off
+      ModelReferenceVersion   "1.3"
+      List {
+	ListType		InputPortNames
+	port0			"I"
+	port1			"R1"
+	port2			"R2"
+	port3			"C1"
+	port4			"C2"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"V1"
+	port1			"V2"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+	port1			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+	port1			"off"
+	port2			"off"
+	port3			"off"
+	port4			"off"
+      }
+      List {
+	ListType		OutputPortUnitExprs
+	port0			"inherit"
+	port1			"inherit"
+      }
+      List {
+	ListType		InputPortUnitExprs
+	port0			"inherit"
+	port1			"inherit"
+	port2			"inherit"
+	port3			"inherit"
+	port4			"inherit"
+      }
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+	port1			"off"
+	port2			"off"
+	port3			"off"
+	port4			"off"
+      }
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model3"
+      SID		      "5"
+      Ports		      [2, 4]
+      Position		      [265, 351, 370, 479]
+      ZOrder		      5
+      ModelNameDialog	      "RC_values.mdl"
+      SimulationMode	      "Normal"
+      Variant		      off
+      ModelReferenceVersion   "1.3"
+      List {
+	ListType		InputPortNames
+	port0			"SOC "
+	port1			"I"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"R1"
+	port1			"R2"
+	port2			"C1"
+	port3			"C2"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+	port1			"off"
+	port2			"off"
+	port3			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+	port1			"off"
+      }
+      List {
+	ListType		OutputPortUnitExprs
+	port0			"inherit"
+	port1			"inherit"
+	port2			"inherit"
+	port3			"inherit"
+      }
+      List {
+	ListType		InputPortUnitExprs
+	port0			"inherit"
+	port1			"inherit"
+      }
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+	port1			"off"
+      }
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model4"
+      SID		      "6"
+      Ports		      [1, 1]
+      Position		      [435, 177, 575, 223]
+      ZOrder		      6
+      ModelNameDialog	      "ocv_calc.mdl"
+      SimulationMode	      "Normal"
+      Variant		      off
+      ModelReferenceVersion   "1.1"
+      List {
+	ListType		InputPortNames
+	port0			"SOC"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"OCV"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+      }
+      List {
+	ListType		OutputPortUnitExprs
+	port0			"inherit"
+      }
+      List {
+	ListType		InputPortUnitExprs
+	port0			"inherit"
+      }
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+      }
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model5"
+      SID		      "17"
+      Ports		      [2, 2]
+      Position		      [870, 54, 1010, 101]
+      ZOrder		      17
+      ModelNameDialog	      "current_measure.mdl"
+      SimulationMode	      "Normal"
+      Variant		      off
+      ModelReferenceVersion   "1.3"
+      List {
+	ListType		InputPortNames
+	port0			"+"
+	port1			"R(t)"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"i"
+	port1			"-"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+	port1			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+	port1			"off"
+      }
+      List {
+	ListType		OutputPortUnitExprs
+	port0			"inherit"
+	port1			"inherit"
+      }
+      List {
+	ListType		InputPortUnitExprs
+	port0			"inherit"
+	port1			"inherit"
+      }
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+	port1			"off"
+      }
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "Model6"
+      SID		      "18"
+      Ports		      [1, 2]
+      Position		      [895, 213, 1035, 262]
+      ZOrder		      18
+      ModelNameDialog	      "controlled_voltage_source.mdl"
+      SimulationMode	      "Normal"
+      Variant		      off
+      ModelReferenceVersion   "1.4"
+      List {
+	ListType		InputPortNames
+	port0			"S"
+      }
+      List {
+	ListType		OutputPortNames
+	port0			"V+"
+	port1			"V-"
+      }
+      List {
+	ListType		OutputPortOutputBusAsStructs
+	port0			"off"
+	port1			"off"
+      }
+      List {
+	ListType		InputPortLatchByCopyingInsideSignal
+	port0			"off"
+      }
+      List {
+	ListType		OutputPortUnitExprs
+	port0			"inherit"
+	port1			"inherit"
+      }
+      List {
+	ListType		InputPortUnitExprs
+	port0			"inherit"
+      }
+      List {
+	ListType		InputPortLatchByDelayingOutsideSignal
+	port0			"off"
+      }
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Resistance"
+      SID		      "19"
+      Position		      [815, 75, 845, 105]
+      ZOrder		      19
+    }
+    Block {
+      BlockType		      Saturate
+      Name		      "Saturation"
+      SID		      "10"
+      Ports		      [1, 1]
+      Position		      [825, 225, 855, 255]
+      ZOrder		      10
+      InputPortMap	      "u0"
+    }
+    Block {
+      BlockType		      Saturate
+      Name		      "Saturation1"
+      SID		      "16"
+      Ports		      [1, 1]
+      Position		      [435, 105, 465, 135]
+      ZOrder		      16
+      InputPortMap	      "u0"
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Subtract"
+      SID		      "8"
+      Ports		      [2, 1]
+      Position		      [685, 212, 715, 243]
+      ZOrder		      8
+      Inputs		      "+-"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Subtract1"
+      SID		      "9"
+      Ports		      [2, 1]
+      Position		      [755, 222, 785, 253]
+      ZOrder		      9
+      Inputs		      "+-"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      PMIOPort
+      Name		      " +"
+      SID		      "23"
+      Position		      [1230, 158, 1260, 172]
+      ZOrder		      24
+      BlockMirror	      on
+      Port		      "1"
+      Side		      "Left"
+    }
+    Block {
+      BlockType		      PMIOPort
+      Name		      "-"
+      SID		      "24"
+      Position		      [1240, 373, 1270, 387]
+      ZOrder		      25
+      BlockMirror	      on
+      Port		      "2"
+      Side		      "Left"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Vt+-"
+      SID		      "13"
+      Position		      [1240, 83, 1270, 97]
+      ZOrder		      13
+      IconDisplay	      "Port number"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Vt-"
+      SID		      "12"
+      Position		      [1240, 243, 1270, 257]
+      ZOrder		      12
       Port		      "2"
       IconDisplay	      "Port number"
     }
     Block {
-      BlockType		      Lookup_n-D
-      Name		      "Calculate Rs"
-      SID		      "4"
-      Ports		      [2, 1]
-      Position		      [320, 53, 385, 117]
-      ZOrder		      4
-      BreakpointsForDimension1 "[1,2,3]"
-      BreakpointsForDimension2 "[1,2,3]"
-      Table		      "reshape([6,0,0.0083,9,0.70845,0.005,18,1.2391,0.0027],3,3)"
-      RndMeth		      "Simplest"
-    }
-    Block {
-      BlockType		      Math
-      Name		      "Math\nFunction"
-      SID		      "1"
-      Ports		      [1, 1]
-      Position		      [190, 125, 220, 155]
-      ZOrder		      1
-    }
-    Block {
-      BlockType		      Product
-      Name		      "Product"
-      SID		      "3"
-      Ports		      [2, 1]
-      Position		      [440, 117, 470, 148]
-      ZOrder		      3
-      InputSameDT	      off
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      Sqrt
-      Name		      "Sqrt"
-      SID		      "2"
-      Position		      [250, 125, 280, 155]
-      ZOrder		      2
-    }
-    Block {
       BlockType		      Outport
-      Name		      "Vs"
-      SID		      "6"
-      Position		      [520, 128, 550, 142]
-      ZOrder		      6
+      Name		      "SOCn"
+      SID		      "15"
+      Position		      [515, 113, 545, 127]
+      ZOrder		      15
+      Port		      "3"
       IconDisplay	      "Port number"
     }
     Line {
       ZOrder		      1
-      SrcBlock		      "I"
+      SrcBlock		      "Model3"
       SrcPort		      1
-      Points		      [16, 0]
-      Branch {
-	ZOrder			2
-	Points			[0, 55; 294, 0]
-	DstBlock		"Product"
-	DstPort			2
-      }
-      Branch {
-	ZOrder			3
-	DstBlock		"Math\nFunction"
-	DstPort			1
-      }
-    }
-    Line {
-      ZOrder		      4
-      SrcBlock		      "Math\nFunction"
-      SrcPort		      1
-      DstBlock		      "Sqrt"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      5
-      SrcBlock		      "Sqrt"
-      SrcPort		      1
-      Points		      [15, 0; 0, -40]
-      DstBlock		      "Calculate Rs"
+      DstBlock		      "Model2"
       DstPort		      2
     }
     Line {
-      ZOrder		      6
-      SrcBlock		      "SOC"
+      ZOrder		      2
+      SrcBlock		      "Model3"
+      SrcPort		      2
+      DstBlock		      "Model2"
+      DstPort		      3
+    }
+    Line {
+      ZOrder		      3
+      SrcBlock		      "Model3"
+      SrcPort		      3
+      DstBlock		      "Model2"
+      DstPort		      4
+    }
+    Line {
+      ZOrder		      4
+      SrcBlock		      "Model3"
+      SrcPort		      4
+      DstBlock		      "Model2"
+      DstPort		      5
+    }
+    Line {
+      ZOrder		      5
+      SrcBlock		      "Model2"
       SrcPort		      1
-      DstBlock		      "Calculate Rs"
+      Points		      [22, 0; 0, 30]
+      DstBlock		      "Add"
       DstPort		      1
     }
     Line {
+      ZOrder		      6
+      SrcBlock		      "Model2"
+      SrcPort		      2
+      Points		      [9, 0; 0, -35]
+      DstBlock		      "Add"
+      DstPort		      2
+    }
+    Line {
       ZOrder		      7
-      SrcBlock		      "Calculate Rs"
+      SrcBlock		      "Model4"
       SrcPort		      1
-      Points		      [22, 0; 0, 40]
-      DstBlock		      "Product"
+      Points		      [40, 0; 0, 20]
+      DstBlock		      "Subtract"
       DstPort		      1
     }
     Line {
       ZOrder		      8
-      SrcBlock		      "Product"
+      SrcBlock		      "Add"
       SrcPort		      1
-      DstBlock		      "Vs"
+      Points		      [5, 0; 0, -165]
+      DstBlock		      "Subtract"
+      DstPort		      2
+    }
+    Line {
+      ZOrder		      9
+      SrcBlock		      "Subtract"
+      SrcPort		      1
+      DstBlock		      "Subtract1"
       DstPort		      1
+    }
+    Line {
+      ZOrder		      10
+      SrcBlock		      "Model1"
+      SrcPort		      1
+      Points		      [154, 0; 0, -30]
+      DstBlock		      "Subtract1"
+      DstPort		      2
+    }
+    Line {
+      ZOrder		      11
+      SrcBlock		      "Subtract1"
+      SrcPort		      1
+      DstBlock		      "Saturation"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      12
+      SrcBlock		      "SOC0"
+      SrcPort		      1
+      DstBlock		      "Model"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      13
+      SrcBlock		      "Model"
+      SrcPort		      1
+      Points		      [15, 0]
+      Branch {
+	ZOrder			14
+	Points			[0, 80]
+	Branch {
+	  ZOrder		  15
+	  Points		  [0, 60]
+	  Branch {
+	    ZOrder		    16
+	    Points		    [-160, 0; 0, 125]
+	    DstBlock		    "Model3"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    17
+	    DstBlock		    "Model1"
+	    DstPort		    1
+	  }
+	}
+	Branch {
+	  ZOrder		  18
+	  DstBlock		  "Model4"
+	  DstPort		  1
+	}
+      }
+      Branch {
+	ZOrder			19
+	DstBlock		"Saturation1"
+	DstPort			1
+      }
+    }
+    Line {
+      ZOrder		      20
+      SrcBlock		      "Saturation1"
+      SrcPort		      1
+      DstBlock		      "SOCn"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      38
+      SrcBlock		      "Current Measurement"
+      SrcPort		      1
+      Points		      [42, 0; 0, -140; -1027, 0; 0, 115]
+      Branch {
+	ZOrder			40
+	Points			[0, 155]
+	Branch {
+	  ZOrder		  39
+	  Points		  [0, 55]
+	  Branch {
+	    ZOrder		    24
+	    Points		    [0, 110]
+	    DstBlock		    "Model3"
+	    DstPort		    2
+	  }
+	  Branch {
+	    ZOrder		    25
+	    DstBlock		    "Model2"
+	    DstPort		    1
+	  }
+	}
+	Branch {
+	  ZOrder		  26
+	  DstBlock		  "Model1"
+	  DstPort		  2
+	}
+      }
+      Branch {
+	ZOrder			22
+	DstBlock		"Model"
+	DstPort			2
+      }
+    }
+    Line {
+      ZOrder		      28
+      SrcBlock		      "Model5"
+      SrcPort		      2
+      DstBlock		      "Vt+-"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      29
+      SrcBlock		      "Saturation"
+      SrcPort		      1
+      Points		      [15, 0]
+      Branch {
+	ZOrder			34
+	Points			[0, 150]
+	DstBlock		"Controlled Voltage Source1"
+	DstPort			1
+      }
+      Branch {
+	ZOrder			33
+	DstBlock		"Model6"
+	DstPort			1
+      }
+    }
+    Line {
+      ZOrder		      30
+      SrcBlock		      "Model6"
+      SrcPort		      1
+      Points		      [9, 0; 0, -79; -255, 0; 0, -81]
+      DstBlock		      "Model5"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      31
+      SrcBlock		      "Model6"
+      SrcPort		      2
+      DstBlock		      "Vt-"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      32
+      SrcBlock		      "Resistance"
+      SrcPort		      1
+      DstBlock		      "Model5"
+      DstPort		      2
+    }
+    Line {
+      LineType		      "Connection"
+      ZOrder		      35
+      SrcBlock		      "Controlled Voltage Source1"
+      SrcPort		      RConn1
+      Points		      [0, -155]
+      DstBlock		      "Current Measurement"
+      DstPort		      LConn1
+    }
+    Line {
+      LineType		      "Connection"
+      ZOrder		      46
+      SrcBlock		      " +"
+      SrcPort		      RConn1
+      DstBlock		      "Current Measurement"
+      DstPort		      RConn1
+    }
+    Line {
+      LineType		      "Connection"
+      ZOrder		      47
+      SrcBlock		      "Controlled Voltage Source1"
+      SrcPort		      LConn1
+      Points		      [0, -10]
+      DstBlock		      "-"
+      DstPort		      RConn1
     }
   }
 }
