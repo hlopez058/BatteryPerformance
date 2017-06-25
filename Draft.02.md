@@ -50,3 +50,5 @@ Experimental validation of the model shown a maximum error of 5% (when SOC is be
 
 Circuit Simulation with Simscape
 --------------------------------
+
+
