@@ -28,7 +28,8 @@ batt2_lbl = [zeros(1,asize),ones(1,asize),zeros(1,asize)];
 batt3_lbl = [zeros(1,asize),zeros(1,asize),ones(1,asize)];
 
 batt_target = [batt1_lbl;batt2_lbl;batt3_lbl];
-                                        
+
+
 %------------------------------------------------------------------
 % Create the voltage vs soc curves for each battery model
 % 
